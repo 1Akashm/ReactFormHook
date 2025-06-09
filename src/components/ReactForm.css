@@ -34,8 +34,8 @@ input {
   font-size: 18px;
 }
 
-input:focus{
-    border-bottom: 1px solid rgb(132, 230, 132);
+input:focus {
+  border-bottom: 1px solid rgb(132, 230, 132);
 }
 
 input[type="submit"] {
@@ -48,16 +48,15 @@ input[type="submit"] {
   font-weight: 600;
 }
 
-
 input[type="submit"]:hover {
-    color: white;
-    border: 1px solid rgb(124,226,124);
+  color: white;
+  border: 1px solid rgb(124, 226, 124);
 }
 
-.input-error{
-    width: 100%;
+.input-error {
+  width: 100%;
 }
 
-p{
-    color: red;
+.error {
+  color: red;
 }

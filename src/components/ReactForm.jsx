@@ -4,12 +4,13 @@ import { DevTool } from "@hookform/devtools";
 import "./ReactForm.css";
 
 const ReactForm = () => {
-  const { register, handleSubmit, control, formState } = useForm();
+  const { register, handleSubmit, control, formState, reset } = useForm();
   // destructuring form
   const { errors } = formState;
 
   function onSubmit(data) {
     console.log("submitted form", data);
+    reset(); // clear the form value on submit
   }
 
   return (
@@ -25,11 +26,17 @@ const ReactForm = () => {
                 {...register("firstName", {
                   required: {
                     value: true,
-                    message: "First is required",
+                    message: "First is required ",
                   },
+                  minLength:{
+                    value: 3,
+                    message: "First Name must be at least 3 letter"
+                  },validate:(fieldValue)=>{
+                    
+                  }
                 })}
               />
-              <p>{errors.firstName?.message}</p>
+              <p className="error">{errors.firstName?.message}</p>
             </div>
             <label htmlFor="lastName">LastName</label>
             <div className="input-error">
@@ -42,7 +49,7 @@ const ReactForm = () => {
                   },
                 })}
               />
-              <p>{errors.lastName?.message}</p>
+              <p className="error">{errors.lastName?.message}</p>
             </div>
           </div>
 
@@ -62,7 +69,7 @@ const ReactForm = () => {
                   },
                 })}
               />
-              <p>{errors.email?.message}</p>
+              <p className="error">{errors.email?.message}</p>
             </div>
           </div>
           <input type="submit" />
