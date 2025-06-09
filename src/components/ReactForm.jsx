@@ -28,12 +28,10 @@ const ReactForm = () => {
                     value: true,
                     message: "First is required ",
                   },
-                  minLength:{
+                  minLength: {
                     value: 3,
-                    message: "First Name must be at least 3 letter"
-                  },validate:(fieldValue)=>{
-                    
-                  }
+                    message: "First Name must be at least 3 letter",
+                  },
                 })}
               />
               <p className="error">{errors.firstName?.message}</p>
@@ -66,6 +64,24 @@ const ReactForm = () => {
                   pattern: {
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                     message: "Invalid Email",
+                  },
+                  // custom validation
+                  // validate: (fieldValue) => {
+                  //   return (
+                  //     fieldValue !== "admin@gmail.com" || "Use different email"
+                  //   );
+                  // },
+
+                  validate: {
+                    notAdmin: (fieldValue) => {
+                      return (
+                        fieldValue !== "admin@gmail.com" ||
+                        "use different email"
+                      );
+                    },
+                    notDomain: (fieldValue) => {
+                      return (!fieldValue.endsWith("baddomain.com") || "Domain not supported");
+                    },
                   },
                 })}
               />
