@@ -4,7 +4,26 @@ import { DevTool } from "@hookform/devtools";
 import "./ReactForm.css";
 
 const ReactForm = () => {
-  const { register, handleSubmit, control, formState, reset } = useForm();
+  const { register, handleSubmit, control, formState, reset } = useForm({
+    defaultValues: async () => {
+      const randomNum = Math.floor(Math.random() * 10) + 1;
+
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${randomNum}`
+      );
+      const data = await response.json();
+      // console.log("data", data);
+
+      const fullName = data.name.trim().split(" "); // get the full Name in form of array separating them by space 
+      const last = fullName.slice(1).join(" "); // slice the fullName from 1 to remaining excluding the item at 1 index
+
+      return {
+        firstName: data.username,
+        lastName: last,
+        email: data.email,
+      };
+    },
+  });
   // destructuring form
   const { errors } = formState;
 
@@ -80,7 +99,10 @@ const ReactForm = () => {
                       );
                     },
                     notDomain: (fieldValue) => {
-                      return (!fieldValue.endsWith("baddomain.com") || "Domain not supported");
+                      return (
+                        !fieldValue.endsWith("baddomain.com") ||
+                        "Domain not supported"
+                      );
                     },
                   },
                 })}
