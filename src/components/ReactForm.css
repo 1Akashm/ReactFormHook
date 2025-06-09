@@ -1,0 +1,55 @@
+.form-custom {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 740px;
+}
+
+.form-userName {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+input {
+  padding: 10px 5px;
+  outline: none;
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 18px;
+}
+
+input:focus{
+    border-bottom: 1px solid rgb(132, 230, 132);
+}
+
+input[type="submit"] {
+  width: 200px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid white;
+  color: rgb(124, 226, 124);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+input[type="submit"]:hover {
+    color: white;
+    border: 1px solid rgb(124,226,124);
+}
