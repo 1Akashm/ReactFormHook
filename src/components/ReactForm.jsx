@@ -14,13 +14,17 @@ const ReactForm = () => {
       const data = await response.json();
       // console.log("data", data);
 
-      const fullName = data.name.trim().split(" "); // get the full Name in form of array separating them by space 
+      const fullName = data.name.trim().split(" "); // get the full Name in form of array separating them by space
       const last = fullName.slice(1).join(" "); // slice the fullName from 1 to remaining excluding the item at 1 index
 
       return {
         firstName: data.username,
         lastName: last,
         email: data.email,
+        social: {
+          twitter: "",
+          faceBook: "",
+        },
       };
     },
   });
@@ -108,6 +112,49 @@ const ReactForm = () => {
                 })}
               />
               <p className="error">{errors.email?.message}</p>
+            </div>
+          </div>
+
+          <div className="form-userName">
+            <label htmlFor="channel">Channel</label>
+            <div className="input-error">
+              <input
+                type="text"
+                {...register("channel", {
+                  required: {
+                    value: false,
+                    // message: "Channel is required",
+                  },
+                })}
+              />
+              {/* <p className="error">{errors.channel?.message}</p> */}
+            </div>
+            <label htmlFor="twitter">Twitter</label>
+            <div className="input-error">
+              <input
+                type="text"
+                {...register("social.twitter", {
+                  required: {
+                    value: false,
+                    // message: "twitter is required",
+                  },
+                })}
+              />
+              {/* <p className="error">{errors.social.twitter?.message}</p> */}
+            </div>
+
+            <label htmlFor="faceBook">FaceBook</label>
+            <div className="input-error">
+              <input
+                type="text"
+                {...register("social.faceBook", {
+                  required: {
+                    value: false,
+                    // message: "faceBook is required",
+                  },
+                })}
+              />
+              {/* <p className="error">{errors.social.faceBook?.message}</p> */}
             </div>
           </div>
           <input type="submit" />
