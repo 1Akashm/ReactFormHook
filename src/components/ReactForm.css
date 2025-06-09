@@ -21,6 +21,7 @@ form {
   display: flex;
   gap: 20px;
   width: 100%;
+  align-items: end;
 }
 
 input {
@@ -55,8 +56,12 @@ input[type="submit"]:hover {
 
 .input-error {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 .error {
   color: red;
+  display: none;
 }
