@@ -53,3 +53,11 @@ input[type="submit"]:hover {
     color: white;
     border: 1px solid rgb(124,226,124);
 }
+
+.input-error{
+    width: 100%;
+}
+
+p{
+    color: red;
+}

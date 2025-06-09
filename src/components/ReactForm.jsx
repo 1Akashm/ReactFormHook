@@ -4,7 +4,9 @@ import { DevTool } from "@hookform/devtools";
 import "./ReactForm.css";
 
 const ReactForm = () => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, formState } = useForm();
+  // destructuring form
+  const { errors } = formState;
 
   function onSubmit(data) {
     console.log("submitted form", data);
@@ -16,43 +18,52 @@ const ReactForm = () => {
         <h1>React Hook Form</h1>
         <form action="post" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-userName">
-            <label htmlFor="FirstName">FirstName</label>
-            <input
-              type="text"
-              {...register("firstName", {
-                required: {
-                  value: true,
-                  message: "First is required",
-                },
-              })}
-            />
+            <label htmlFor="firstName">FirstName</label>
+            <div className="input-error">
+              <input
+                type="text"
+                {...register("firstName", {
+                  required: {
+                    value: true,
+                    message: "First is required",
+                  },
+                })}
+              />
+              <p>{errors.firstName?.message}</p>
+            </div>
             <label htmlFor="lastName">LastName</label>
-            <input
-              type="text"
-              {...register("lastName", {
-                required: {
-                  value: true,
-                  message: "LastName is required",
-                },
-              })}
-            />
+            <div className="input-error">
+              <input
+                type="text"
+                {...register("lastName", {
+                  required: {
+                    value: true,
+                    message: "LastName is required",
+                  },
+                })}
+              />
+              <p>{errors.lastName?.message}</p>
+            </div>
           </div>
 
           <div className="form-userName">
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "email is required",
-                },
-                pattern: {
-                  value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                  message: "Invalid Email",
-                },
-              })}
-            />
+            <div className="input-error">
+              <input
+                type="email"
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "email is required",
+                  },
+                  pattern: {
+                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    message: "Invalid Email",
+                  },
+                })}
+              />
+              <p>{errors.email?.message}</p>
+            </div>
           </div>
           <input type="submit" />
         </form>
